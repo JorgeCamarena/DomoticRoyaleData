@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smart"> 
+<head>
+	<title>PERROS</title>
+
+	<link rel="stylesheet" type="text/css" href="js/bootstrap/dist/css/bootstrap.css">
+	<script src="js/jquery/dist/jquery.js"></script>
+	<script type="js/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/node_modules/angular/angular.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+
+		var app = angular.module('smart', []);
+		var socket = io();
+
+
+		app.controller('messageController', ['$scope', function($scope){
+			
+			socket.on("lectura", function(lectura) {
+				console.log(lectura);
+				$scope.$apply(function(){
+					$scope.dato = lectura;
+				});
+			});
+
+			
+
+		}]);
+		
+		
+	</script>
+
+</head>
+<body>
+
+<div ng-controller="messageController">
+	<p>{{dato}}</p>
+</div>
+
+<!-- SWITCH.JS NO FUNCIONARA, SE TIENE QUE USAR SOCKET.IO Y PARA VERSE MAS NICE ANGULAR.JS -->
+
+<button type="button" id="ON" class="btn btn-primary">ON</button>
+<button type="button" id="OFF" class="btn btn-warning">OFF</button>
+
+
+</body>
+</html>
