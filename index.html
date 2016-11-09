@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="smart"> 
 <head>
+	<meta charset=utf-8>
+	<meta content="width=device-width,initial-scale=1" name=viewport>
 	<title>PERROS</title>
 
 	<link rel="stylesheet" type="text/css" href="js/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/css/bootstrap-toggle.css">
+	<link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+
 
 
 
 </head>
 <body>
 
-<div ng-controller="messageController">
+<div ng-controller="actionController">
 	<p>{{data}}</p>
-</div>
-<div ng-controller = "actionController">
-	<button type="button" id="ON" ng-click = "turnOn()" class="btn btn-primary">ON</button>
-	<button type="button" id="OFF" ng-click = "turnOff()" class="btn btn-warning">OFF</button>
+
+	<md-switch class="md-primary" md-no-ink ng-model="checkboxModel.value1"  aria-label="Light" ng-change="turnOnOff(checkboxModel.value1)">
+		{{checkboxModel.value1}}
+	</md-switch>
+
 </div>
 
-<!-- SWITCH.JS NO FUNCIONARA, SE TIENE QUE USAR SOCKET.IO Y PARA VERSE MAS NICE ANGULAR.JS -->
 
 
 <script src="js/jquery/dist/jquery.js"></script>
@@ -28,6 +33,11 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/controllers/actionController.js"></script>
 <script src="js/controllers/messageController.js"></script>
+<script src="/node_modules/bootstrap/js/bootstrap-toggle.js"></script>
+<script src="/node_modules/angular-aria/angular-aria.js"></script>
+<script src="/node_modules/angular-animate/angular-animate.js"></script>
+<script src="/node_modules/angular-material/angular-material.js"></script>
+
 
 </body>
 </html>
