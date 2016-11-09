@@ -17,7 +17,6 @@ io.on('connection', function(socket){
   console.log("NEW USER");
 
     socket.on('turnOn', function(){
-        console.log('recived socket on')
         serialPort.write("1");
     });
 
