@@ -19,7 +19,8 @@ io.on('connection', function(socket){
 
 
 var SerialPort = require('serialport');
-var serialPort = new SerialPort('COM4', 
+//var serialPort = new SerialPort('COM4', 
+var serialPort = new SerialPort('/dev/cu.usbmodem1421', 
     {   baudrate: 9600
     });
  
@@ -27,11 +28,13 @@ serialPort.on("open", function () {
     console.log('open');
 
     setTimeout(function(){
-      serialPort.write("H");
+        console.log('HIGH');
+
+        serialPort.write("H");
 
       setTimeout(function(){
         serialPort.write("L");
-      }, 8000);
+      }, 1000);
 
     },1000); 
 
@@ -39,10 +42,19 @@ serialPort.on("open", function () {
 
 serialPort.on("data", function(data) {
   var dato = data.toString();
-  io.sockets.emit("lectura", dato);
+    console.log('data received');
+
+    io.sockets.emit("lectura", dato);
 });
 
+io.on('turnOn', function(){
+    console.log('recived socket on')
+  serialPort.write("1");
+});
 
+io.on('turnOff', function(){
+  serialPort.write("0");
+});
 
 server.listen(8000, function(){
   console.log('Server is running');
