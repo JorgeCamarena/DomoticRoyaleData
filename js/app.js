@@ -1,3 +1,3 @@
 'use strict'
 
-var app = angular.module('smart', []);
+var app = angular.module('smart', ['ngMaterial']);
