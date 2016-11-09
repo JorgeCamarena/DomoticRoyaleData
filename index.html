@@ -4,6 +4,7 @@
 	<title>PERROS</title>
 
 	<link rel="stylesheet" type="text/css" href="js/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/css/bootstrap-toggle.css">
 
 
 
@@ -14,11 +15,13 @@
 	<p>{{data}}</p>
 </div>
 <div ng-controller = "actionController">
-	<button type="button" id="ON" ng-click = "turnOn()" class="btn btn-primary">ON</button>
+	<button type="button" id="ON"  class="btn btn-primary">ON</button>
 	<button type="button" id="OFF" ng-click = "turnOff()" class="btn btn-warning">OFF</button>
+	<input type="checkbox" data-toggle="toggle" ng-model="checkboxModel.value1">
+
+	<P>{{checkboxModel.value1}}</P>
 </div>
 
-<!-- SWITCH.JS NO FUNCIONARA, SE TIENE QUE USAR SOCKET.IO Y PARA VERSE MAS NICE ANGULAR.JS -->
 
 
 <script src="js/jquery/dist/jquery.js"></script>
@@ -28,6 +31,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/controllers/actionController.js"></script>
 <script src="js/controllers/messageController.js"></script>
+<script src="/node_modules/bootstrap/js/bootstrap-toggle.js"></script>
 
 </body>
 </html>

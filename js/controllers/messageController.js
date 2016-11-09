@@ -11,7 +11,7 @@
 					$scope.data = "Led is ON";
 				}
 				else if (lectura == "0")
-				$scope.data = "Led is OFF";
+					$scope.data = "Led is OFF";
 			});
 		});
 		}]);
