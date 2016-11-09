@@ -15,6 +15,15 @@ app.use(express.static(roothPath));
 
 io.on('connection', function(socket){
   console.log("NEW USER");
+
+    socket.on('turnOn', function(){
+        console.log('recived socket on')
+        serialPort.write("1");
+    });
+
+    socket.on('turnOff', function(){
+        serialPort.write("0");
+    });
 });
 
 
@@ -45,15 +54,6 @@ serialPort.on("data", function(data) {
     console.log('data received');
 
     io.sockets.emit("lectura", dato);
-});
-
-io.on('turnOn', function(){
-    console.log('recived socket on')
-  serialPort.write("1");
-});
-
-io.on('turnOff', function(){
-  serialPort.write("0");
 });
 
 server.listen(8000, function(){
